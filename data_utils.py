@@ -57,7 +57,7 @@ class SequenceGenerator:
             m = input_df[self.col_dict['missing']].values
             t = input_df[self.col_dict['delta']].values
             
-            return seq_name, np.array([x, m, t, x_obs]) 
+            return seq_name, [x, m, t, x_obs] 
 
         input_start_ix = grp.index[0]
         input_final_ix = grp.index[-1]-self.min_rows_reqd+1
@@ -203,7 +203,8 @@ def clean_longitudinal_inputs(df):
 
         df = timestamped_df.groupby('ID', as_index=False).apply(pad)
         df.index = range(0, df.shape[0])
-        df.drop(['index', 'YEAR', 'MONTH'], axis=1, inplace=True)
+        #df.drop(['index', 'YEAR', 'MONTH'], axis=1, inplace=True)
+        
         print(f"Data shape: {df.shape}")
         return df
 
