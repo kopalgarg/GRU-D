@@ -74,7 +74,7 @@ def train_epoch(model, train_iter, tgt_col, aux_cols, criterion, optimizer, aux_
     def get_aux_loss(pred_aux, true_aux):
         aux_criterion = nn.BCEWithLogitsLoss() # MultiLabel
         combined_aux_loss = 0
-        for truth, pred in zip(true_aux, pred_aux)
+        for truth, pred in zip(true_aux, pred_aux):
             if len(truth.size())==1: 
                 truth = torch.unsqueeze(truth, 1)
             combined_aux_loss += aux_criterion(pred, truth)
